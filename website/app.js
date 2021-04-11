@@ -20,10 +20,14 @@ async function checkWeather(){
         const url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${apiKey}&units=metric`; 
         const feeling = document.getElementById('feelings').value;
         getData(url)
-        .then(await function(data){
-            postData('/adddata' , {date:newDate , temp:data , content:feeling} )})
+        .then(
+            await function(data){
+            postData('/adddata' , {date:newDate , temp:data , content:feeling});
+        }
+        ).then(()=>{updateUi('/all');}
+        );  
         
-            updateUi('/all')}
+            }
 
             
 
